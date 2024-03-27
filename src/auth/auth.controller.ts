@@ -17,6 +17,8 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @UseGuards(LocalAuthGuard)
   login() {
-    return this.authService.login();
+    //return this.authService.login();
+    //Aqui assume que os dados já são válidos
+    return 'Logado';
   }
 }
