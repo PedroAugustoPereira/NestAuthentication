@@ -1,12 +1,17 @@
+// NestJS
 import {
   ExecutionContext,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+// Password
 import { AuthGuard } from '@nestjs/passport';
 
+// Decorators
 import { IS_PUBLIC_KEY } from '../decorators/is-public.decorator';
+
+// Error Handling
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {
@@ -34,7 +39,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
 
     return canActivatePromise.catch((error) => {
       if (error instanceof UnauthorizedException) {
-        throw new UnauthorizedException('Token is not authorized');
+        throw new UnauthorizedException(error.message);
       }
 
       throw new UnauthorizedException();
